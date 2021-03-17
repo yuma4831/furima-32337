@@ -6,7 +6,6 @@
 | --------                 | ------   | -----------  |
 | nickname                 | string   | null: false  |
 | email                    | string   | unique: true |
-| password                 | string   | null: false  |
 | encrypted_password       | string   | null: false  |
 | lastname                 | string   | null: false  |
 | firstname                | string   | null: false  |
@@ -14,6 +13,11 @@
 | firstname_kana           | string   | null: false  |
 | birthday                 | date     | null: false  |
 
+### Association
+
+- has_many :item
+- has_many :shipping
+- has_one :record
 
 ## items テーブル
 
@@ -21,7 +25,7 @@
 | ------             | ------     | ----------- |
 | item_name          | string     | null: false |
 | item_price         | integer    | null: false |
-| image              |            |             |
+| image              |            | ActiveStorageを用いて実装 |
 | category_id        | integer    | null: false |
 | condition_id       | integer    | null: false |
 | shipping_fee_id    | integer    | null: false |
@@ -29,18 +33,25 @@
 | shipping_time_id   | integer    | null: false |
 | user               | references |             |
 
+- belongs_to :user
+- has_many :shipping
+- has_one :record
+
 ## shippings テーブル
 
 | Column           | Type          | Options     |
 | -------          | ----------    | ------------|
-| postal_code      | integer       | null: false |
+| postal_code      | string       | null: false |
 | prefectures_id   | integer       | null: false |
 | municipalities   | string        | null: false |
 | adress           | string        | null: false |
 | building_name    | string        |             |
-| phone_number     | integer       | null: false |
+| phone_number     | string        | null: false |
 | user             | references    |             |
 | item             | references    |             |
+
+- belongs_to :user
+- belongs_to :item
 
 ## records テーブル
 
@@ -53,3 +64,6 @@
 | birthday         | references    |             |
 | user             | references    |             |
 | item             | references    |             |
+
+- belongs_to :user
+- belongs_to :item
