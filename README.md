@@ -2,43 +2,54 @@
 
 ## users テーブル
 
-| Column                   | Type     | Options     |
-| --------                 | ------   | ----------- |
-| nickname                 | string   | null: false |
-| email                    | string   | null: false |
-| password                 | string   | null: false |
-| password_confirmation    | string   | null: false |
-| lastname                 | string   | null: false |
-| firstname                | string   | null: false |
-| lastname_kana            | string   | null: false |
-| firstname_kana           | string   | null: false |
-| birthday_year            | date     | null: false |
-| birthday_month           | date     | null: false |
-| birthday_day             | date     | null: false |
+| Column                   | Type     | Options      |
+| --------                 | ------   | -----------  |
+| nickname                 | string   | null: false  |
+| email                    | string   | unique: true |
+| password                 | string   | null: false  |
+| encrypted_password       | string   | null: false  |
+| lastname                 | string   | null: false  |
+| firstname                | string   | null: false  |
+| lastname_kana            | string   | null: false  |
+| firstname_kana           | string   | null: false  |
+| birthday                 | date     | null: false  |
+
 
 ## items テーブル
 
-| Column          | Type       | Options     |
-| ------          | ------     | ----------- |
-| item_name       | string     | null: false |
-| item_price      | integer    | null: false |
-| image           |            |             |
-| category        | string     | null: false |
-| condition       | string     | null: false |
-| shipping_fee    | string     | null: false |
-| shipping_area   | string     | null: false |
-| shipping_time   | string     | null: false |
-| user            | references |             |
+| Column             | Type       | Options     |
+| ------             | ------     | ----------- |
+| item_name          | string     | null: false |
+| item_price         | integer    | null: false |
+| image              |            |             |
+| category_id        | integer    | null: false |
+| condition_id       | integer    | null: false |
+| shipping_fee_id    | integer    | null: false |
+| shipping_area_id   | integer    | null: false |
+| shipping_time_id   | integer    | null: false |
+| user               | references |             |
+
+## shippings テーブル
+
+| Column           | Type          | Options     |
+| -------          | ----------    | ------------|
+| postal_code      | integer       | null: false |
+| prefectures_id   | integer       | null: false |
+| municipalities   | string        | null: false |
+| adress           | string        | null: false |
+| building_name    | string        |             |
+| phone_number     | integer       | null: false |
+| user             | references    |             |
+| item             | references    |             |
 
 ## records テーブル
 
 | Column           | Type          | Options     |
 | -------          | ----------    | ------------|
-| postal_code      | integer       | null: false |
-| prefectures      | string        | null: false |
-| municipalities   | string        | null: false |
-| adress           | string        | null: false |
-| building_name    | string        | null: false |
-| phone_number     | integer       | null: false |
+| lastname         | references    |             |
+| firstname        | references    |             |
+| lastname_kana    | references    |             |
+| firstname_kana   | references    |             |
+| birthday         | references    |             |
 | user             | references    |             |
 | item             | references    |             |
