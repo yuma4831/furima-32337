@@ -22,8 +22,9 @@
 
 | Column             | Type       | Options     |
 | ------             | ------     | ----------- |
-| name          | string     | null: false |
-| price         | integer    | null: false |
+| name               | string     | null: false |
+| price              | integer    | null: false |
+| content            | text       |             |
 | category_id        | integer    | null: false |
 | condition_id       | integer    | null: false |
 | shipping_fee_id    | integer    | null: false |
@@ -38,14 +39,13 @@
 
 | Column           | Type          | Options     |
 | -------          | ----------    | ------------|
-| postal_code      | string       | null: false |
-| shipping_area_id | references    | foreign_key: true |
+| postal_code      | string        | null: false |
+| shipping_area_id | integer       | null: false |
 | municipalities   | string        | null: false |
 | adress           | string        | null: false |
 | building_name    | string        |             |
 | phone_number     | string        | null: false |
-| user             | references    | foreign_key: true|
-| item             | references    | foreign_key: true|
+| record           | references    | null: false |
 
 - belongs_to :record
 
@@ -53,8 +53,8 @@
 
 | Column           | Type          | Options     |
 | -------          | ----------    | ------------|
-| user             | references    |             |
-| item             | references    |             |
+| user             | references    | null: false |
+| item             | references    | null:false  |
 
 
 - has_one :shipping
