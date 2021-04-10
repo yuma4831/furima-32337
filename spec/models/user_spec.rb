@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
   end
-  describe "ユーザー新規登録" do
+  describe 'ユーザー新規登録' do
     it '全ての欄が存在すれば登録できる' do
       expect(@user).to be_valid
     end
@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
       @user.valid?
     end
   end
-  describe "ユーザー本人情報確認" do
+  describe 'ユーザー本人情報確認' do
     it 'ユーザー名字が空では登録できない' do
       @user.lastname = ''
       @user.valid?
@@ -89,8 +89,6 @@ RSpec.describe User, type: :model do
       @user.valid?
     end
   end
-  describe "ユーザー本人情報確認" do
-  
+  describe 'ユーザー本人情報確認' do
   end
-
 end
