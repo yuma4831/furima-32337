@@ -35,6 +35,10 @@ RSpec.describe User, type: :model do
       another_user.email = @user.email
       another_user.valid?
     end
+    it 'emailに＠がないと登録できない' do
+      @user.email = 'test'
+      @user.valid?
+    end
     it 'passwordが5文字以下では登録できない' do
       @user.password = 'aaa00'
       @user.password_confirmation = 'aaa00'
@@ -48,6 +52,11 @@ RSpec.describe User, type: :model do
     it 'passwordが数字のみでは登録できない' do
       @user.password = '000000'
       @user.password_confirmation = '000000'
+      @user.valid?
+    end
+    it 'passwordが全角では登録できない' do
+      @user.password = 'ああああaaaa0000'
+      @user.password_confirmation = 'ああああaaaa0000'
       @user.valid?
     end
   end
