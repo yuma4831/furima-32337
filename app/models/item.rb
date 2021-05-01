@@ -5,7 +5,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :name
-    validates :price, numericality: { in: 300..9999999 }
+    validates :price, numericality: { in: 300..9_999_999 }
     validates :image
     validates :content
   end
@@ -17,6 +17,4 @@ class Item < ApplicationRecord
     validates :shipping_area_id
     validates :shipping_time_id
   end
-
-
 end

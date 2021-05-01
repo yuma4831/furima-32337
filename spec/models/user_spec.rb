@@ -61,7 +61,6 @@ RSpec.describe User, type: :model do
         @user.password = 'ああああaaaa0000'
         @user.password_confirmation = 'ああああaaaa0000'
         @user.valid?
-      
       end
     end
   end
