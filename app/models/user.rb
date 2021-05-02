@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :items
-  
+
   with_options presence: true do
     validates :nickname
     with_options format: { with: /\A[ぁ-んァ-ン一-龥々]/, message: '全角ひらがな、全角カタカナ、漢字で入力して下さい' } do
