@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   belongs_to :category, :condition, :shipping_fee, :shipping_area, :shipping_time
   belongs_to :user
   has_one_attached :image
+  has_one :record
 
   with_options presence: true do
     validates :name
