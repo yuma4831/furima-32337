@@ -40,6 +40,7 @@ class ItemsController < ApplicationController
       render :show
     end
   end
+
   private
 
   def item_params
@@ -54,5 +55,4 @@ class ItemsController < ApplicationController
   def contributor_confirmation
     redirect_to root_path unless current_user == @item.user
   end
-
 end
