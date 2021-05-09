@@ -1,11 +1,11 @@
 class RecordsController < ApplicationController
-
+  before_action :get_item_infomation, only: [:index, :create]
   def index
-    @records = Order.new
+    @records = Record.new
   end
 
   def create
-    @record = Order.new(record_params)
+    @record = Record.new(record_params)
     if @record.valid?
       pay_item
       @record.save
@@ -16,6 +16,10 @@ class RecordsController < ApplicationController
   end
 
   private
+
+  def get_item_infomation
+    @item = Item.find(params[:item_id])
+  end
 
   def record_params
     params.require(:record).permit(:postal_code, :shippingarea_id, :municipalities, :adress, :buildingname, :phonenumber).merge(token: params[:token])
