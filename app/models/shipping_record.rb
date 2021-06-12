@@ -8,6 +8,8 @@ class ShippingRecord
     validates :adress
     validates :phonenumber
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   validates :shippingarea_id, numericality: { other_than: 1 }  

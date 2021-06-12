@@ -46,11 +46,9 @@ class ItemsController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:id])
-    if (user_signed_in? && current_user.id == @item.user_id) || @item.record.present?
+    if (current_user.id != @item.user_id) || @item.record.present?
       redirect_to root_path
-    elsif user_signed_in? == false
-      redirect_to new_user_session_path 
-    end
+  end
   end
   def item_params
     params.require(:item).permit(:image, :name, :content, :price, :category_id, :condition_id, :shippingfee_id,

@@ -21,11 +21,9 @@ class RecordsController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:item_id])
-    if (user_signed_in? && current_user.id == @item.user_id) || @item.record.present?
+    if (current_user.id != @item.user_id) || @item.record.present?
       redirect_to root_path
-    elsif user_signed_in? == false
-      redirect_to new_user_session_path 
-    end
+  end
   end
 
   def get_item_infomation
@@ -36,8 +34,7 @@ class RecordsController < ApplicationController
     params.permit(:postal_code, :shippingarea_id, :municipalities, :adress, :buildingname, :phonenumber, :item_id).merge(user_id: current_user.id, token: params[:token])
   end
   def pay_item
-    #binding.pry
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
     Payjp::Charge.create(
       amount: @item.price, # 商品の値段
       card: params[:token],    # カードトークン
